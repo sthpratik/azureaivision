@@ -24,7 +24,8 @@ const computerVisionClient = new ComputerVisionClient(
  */
 
 
-function computerVision() {
+function computerVision(imagePath) {
+
   async.series([
     async function () {
 
@@ -39,14 +40,24 @@ function computerVision() {
 
       // Image of different kind of dog.
       //const tagsURL = 'https://moderatorsampleimages.blob.core.windows.net/samples/sample16.png';
-      const tagsURL = ' http://usweb.dotomi.com/images/2262/69270D_BR_ACT_Refresh/336x280/lifestyle_img_acquistion_20220405.jpg';
+      const tagsURL = imagePath;
      
       // Analyze URL image
       console.log('Analyzing tags in image...', tagsURL.split('/').pop());
-      const tags = (await computerVisionClient.analyzeImage(tagsURL, { visualFeatures: ['ImageType','Faces','Adult','Categories' ,'Color','Tags', 'Description', 'Objects', 'Brands'] })).objects;
+      const features = (await computerVisionClient.analyzeImage(tagsURL, { visualFeatures: ['ImageType','Faces','Adult','Categories' ,'Color','Tags', 'Description', 'Objects', 'Brands'] }));
       
-      console.log(tags);
-      console.log(`Tags: ${formatTags(tags)}`);
+      console.log(features.imageType);
+      console.log(features.faces);
+      console.log(features.adult);
+      console.log(features.categories);
+      console.log(features.color);
+      console.log(features.tags);
+      console.log(features.description);
+      console.log(features.objects);
+      console.log(features.brands);
+      console.log(features.tags);
+
+      console.log(`Tags: ${formatTags(features.tags)}`);
 
 
       // Format tags for display
@@ -71,4 +82,17 @@ function computerVision() {
   });
 }
 
-computerVision();
+const imageInput = () => {
+  if (process.argv.length < 3) {
+    console.log('please pass an image  url to process. ex:');
+    console.log('node computerVision.js https://moderatorsampleimages.blob.core.windows.net/samples/sample16.png')
+  } else {
+    // e.g., /path/to/image.jpg
+    let imagePath = process.argv[2];
+  
+    computerVision(imagePath);
+  }
+}
+
+
+imageInput();

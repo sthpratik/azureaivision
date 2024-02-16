@@ -1,1 +1,3 @@
 # azureaivision
+
+node computerVision.js    
