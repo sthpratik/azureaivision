@@ -1,0 +1,16 @@
+{
+  "name": "azureaivision",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@azure-rest/ai-vision-image-analysis": "^1.0.0-beta.2",
+    "@azure/cognitiveservices-computervision": "^8.2.0",
+    "async": "^3.2.5"
+  }
+}

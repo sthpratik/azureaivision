@@ -1,0 +1,20 @@
+# Logs
+log/
+
+# Build
+vendor
+node_modules
+composer.lock
+
+# Sensitive
+.env
+id_rsa
+
+# IDE settings
+nbproject
+nbproject
+.DS_Store
+.buildpath
+.project
+.settings
+.vscode
