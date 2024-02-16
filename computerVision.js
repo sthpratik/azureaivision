@@ -43,8 +43,11 @@ function computerVision() {
      
       // Analyze URL image
       console.log('Analyzing tags in image...', tagsURL.split('/').pop());
-      const tags = (await computerVisionClient.analyzeImage(tagsURL, { visualFeatures: ['Tags'] })).tags;
+      const tags = (await computerVisionClient.analyzeImage(tagsURL, { visualFeatures: ['ImageType','Faces','Adult','Categories' ,'Color','Tags', 'Description', 'Objects', 'Brands'] })).objects;
+      
+      console.log(tags);
       console.log(`Tags: ${formatTags(tags)}`);
+
 
       // Format tags for display
       function formatTags(tags) {
